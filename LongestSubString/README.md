@@ -5,4 +5,4 @@ String1 = abcdxyz
 String2 = xyzabcd
 Longest subString --> abcd
 ```
-Big O --> O(n*m*(smaller of m and n))
+Big O --> O(n x m x (smaller of m and n))
