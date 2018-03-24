@@ -12,4 +12,17 @@ as we can see:
 1 + 2 = 3
 3 + 5 = 8
 ```
-and so on...
+and so on...<br>
+
+The Pseudo code for this :
+```
+val1 = 0; // first term
+val2 = 1; // Second term
+val3 = 0; // Temporary variable to store sum of terms
+for 1 --> Number of terms
+  val3 = val1 + val2;  // Storing the sum of the numbers
+  val1 = val2;
+  val2 = val3;
+ end loop
+print(val2); // nth term of series
+```
