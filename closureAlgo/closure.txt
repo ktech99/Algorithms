@@ -22,7 +22,5 @@ implementation plan :
   key -> value + itself
 
   name -> name, color
-  category -> category + department
+  category -> category, department
   <color, category> -> color, category, price
-
-  

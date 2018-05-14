@@ -25,8 +25,8 @@ public class ClosureCalc {
       lineMap.put(lineDiv[0], lineDiv[1]);
     }
     for (String key : lineMap.keySet()) {
-      values = new HashSet<>();
-      keys = new HashSet<>();
+      values = new TreeSet<>();
+      keys = new TreeSet<>();
       String[] valDiv = lineMap.get(key).split(",");
       String[] keyDiv = lineMap.get(key).split(",");
       for (int i = 0; i < valDiv.length; i++) {
