@@ -44,7 +44,6 @@ public class ClosureCalc {
   }
 
   public void completer() {
-    // System.out.println("reach");
     for (Set<String> k : lineMapToSet.keySet()) {
       Set<String> v = lineMapToSet.get(k);
       for (Set<String> aheadK : lineMapToSet.keySet()) {
