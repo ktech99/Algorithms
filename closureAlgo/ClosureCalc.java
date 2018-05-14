@@ -28,16 +28,35 @@ public class ClosureCalc {
     for (String key : lineMap.keySet()) {
       values = new TreeSet<String>();
       keys = new TreeSet<String>();
-      values.add(key);
       String[] valDiv = lineMap.get(key).split(",");
-      String[] keyDiv = key.split(",");
+      String[] keyDiv = key.split("\\s*\\,\\s*");
       for (int i = 0; i < valDiv.length; i++) {
         values.add(valDiv[i]);
       }
-      keys.add(lineMap.keySet().toArray()[x].toString());
+      for (int i = 0; i < keyDiv.length; i++) {
+        keys.add(keyDiv[i]);
+        values.add(keyDiv[i]);
+      }
       lineMapToSet.put(keys, values);
       x += 1;
     }
     System.out.println(lineMapToSet);
+  }
+
+  public void completer() {
+    // System.out.println("reach");
+    for (Set<String> k : lineMapToSet.keySet()) {
+      Set<String> v = lineMapToSet.get(k);
+      for (Set<String> aheadK : lineMapToSet.keySet()) {
+        if (!(aheadK.equals(k))) {
+          System.out.println(aheadK + "" + v);
+          System.out.println(isSubset(aheadK, v));
+        }
+      }
+    }
+  }
+
+  public <T> boolean isSubset(Set<String> setA, Set<String> setB) {
+    return setB.containsAll(setA);
   }
 }
