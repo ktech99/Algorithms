@@ -16,6 +16,6 @@ public class Closure {
     }
     ClosureCalc solver = new ClosureCalc();
     solver.mapper(Collections.unmodifiableList(lines));
-    solver.completer();
+    while (solver.completer() == 1) ;
   }
 }

@@ -42,7 +42,8 @@ public class ClosureCalc {
     }
   }
 
-  public void completer() {
+  public int completer() {
+    int ret = 0;
     for (Set<String> k : lineMapToSet.keySet()) {
       Set<String> v = lineMapToSet.get(k);
       for (Set<String> aheadK : lineMapToSet.keySet()) {
@@ -51,14 +52,21 @@ public class ClosureCalc {
             Set<String> aheadV = lineMapToSet.get(aheadK);
             Iterator<String> i = aheadV.iterator();
             while (i.hasNext()) {
-              v.add(i.next());
+              String toAdd = i.next();
+              if (!v.contains(toAdd)) {
+                v.add(toAdd);
+                ret = 1;
+              }
             }
-            lineMapToSet.put(k, v);
+            if (ret == 1) {
+              lineMapToSet.put(k, v);
+            }
           }
         }
       }
     }
     System.out.println(lineMapToSet);
+    return ret;
   }
 
   public <T> boolean isSubset(Set<String> setA, Set<String> setB) {
