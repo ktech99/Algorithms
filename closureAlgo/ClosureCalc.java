@@ -3,12 +3,13 @@ import java.util.*;
 public class ClosureCalc {
 
   private Map<String, String> lineMap;
-  private Map<String, Set<String>> lineMapToSet;
+  private Map<Set<String>, Set<String>> lineMapToSet;
   private Set<String> values;
+  private Set<String> keys;
 
   public ClosureCalc() {
     lineMap = new HashMap<String, String>();
-    lineMapToSet = new HashMap<String, Set<String>>();
+    lineMapToSet = new HashMap<Set<String>, Set<String>>();
   }
 
   public void calculations(List<String> lines) {
@@ -25,12 +26,17 @@ public class ClosureCalc {
     }
     for (String key : lineMap.keySet()) {
       values = new HashSet<>();
+      keys = new HashSet<>();
       String[] valDiv = lineMap.get(key).split(",");
+      String[] keyDiv = lineMap.get(key).split(",");
       for (int i = 0; i < valDiv.length; i++) {
         values.add(valDiv[i]);
       }
+      for (int i = 0; i < keyDiv.length; i++) {
+        keys.add(keyDiv[i]);
+      }
       values.add(key);
-      lineMapToSet.put(key, values);
+      lineMapToSet.put(keys, values);
     }
     System.out.println(lineMapToSet);
   }
