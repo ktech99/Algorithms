@@ -23,4 +23,6 @@ implementation plan :
 
   name -> name, color
   category -> category + department
-  <color, category> -> color, category, + price 
+  <color, category> -> color, category, price
+
+  

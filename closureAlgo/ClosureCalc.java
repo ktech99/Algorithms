@@ -32,5 +32,6 @@ public class ClosureCalc {
       values.add(key);
       lineMapToSet.put(key, values);
     }
+    System.out.println(lineMapToSet);
   }
 }
