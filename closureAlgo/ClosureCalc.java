@@ -3,7 +3,7 @@ import java.util.*;
 public class ClosureCalc {
 
   private Map<String, String> lineMap;
-  private Map<String, String> lineMapToSet;
+  private Map<String, Set<String>> lineMapToSet;
   private Set<String> values;
 
   public ClosureCalc(List<String> lines) {
@@ -11,8 +11,9 @@ public class ClosureCalc {
       throw new IllegalArgumentException("Empty file");
     }
     lineMap = new HashMap<String, String>();
-    lineMapToSet = new HashMap<String, String>();
+    lineMapToSet = new HashMap<String, Set<String>>();
     for (String line : lines) {
+      line.replace(" ", "");
       String[] lineDiv = line.split("-");
       if (lineMap.containsKey(lineDiv[0])) {
         throw new IllegalArgumentException("Wrong file format");
