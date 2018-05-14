@@ -1,7 +1,8 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Closure {
-  public static void main(String args[]) {
+  public static void main(String args[]) throws FileNotFoundException {
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter file name");
     String fileName = sc.nextLine();
@@ -13,6 +14,7 @@ public class Closure {
         lines.add(next);
       }
     }
-    ClosureCalc solver = new closureCalc(Collections.unmodifiableList(lines));
+    ClosureCalc solver = new ClosureCalc();
+    solver.calculations(Collections.unmodifiableList(lines));
   }
 }

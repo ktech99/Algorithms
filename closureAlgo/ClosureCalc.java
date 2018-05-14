@@ -6,12 +6,15 @@ public class ClosureCalc {
   private Map<String, Set<String>> lineMapToSet;
   private Set<String> values;
 
-  public ClosureCalc(List<String> lines) {
+  public ClosureCalc() {
+    lineMap = new HashMap<String, String>();
+    lineMapToSet = new HashMap<String, Set<String>>();
+  }
+
+  public void calculations(List<String> lines) {
     if (lines.size() == 0) {
       throw new IllegalArgumentException("Empty file");
     }
-    lineMap = new HashMap<String, String>();
-    lineMapToSet = new HashMap<String, Set<String>>();
     for (String line : lines) {
       line.replace(" ", "");
       String[] lineDiv = line.split("-");
