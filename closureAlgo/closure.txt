@@ -1,0 +1,26 @@
+input:
+name - color
+category - department
+color, category - price
+
+
+Output:
+name+ = {name, color}
+{name, category}+ = {name, category, color, department, price}
+color+ = {color}
+
+implementation plan :
+
+1 map:
+    key -> value
+
+    name -> color
+    category - > department
+    <color, category> -> price
+
+2 map2:
+  key -> value + itself
+
+  name -> name, color
+  category -> category + department
+  <color, category> -> color, category, + price 
