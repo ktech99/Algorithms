@@ -12,7 +12,7 @@ public class ClosureCalc {
     lineMapToSet = new HashMap<Set<String>, Set<String>>();
   }
 
-  public void calculations(List<String> lines) {
+  public void mapper(List<String> lines) {
     if (lines.size() == 0) {
       throw new IllegalArgumentException("Empty file");
     }
@@ -24,20 +24,19 @@ public class ClosureCalc {
       }
       lineMap.put(lineDiv[0], lineDiv[1]);
     }
+    int x = 0;
     for (String key : lineMap.keySet()) {
-      values = new TreeSet<>();
-      keys = new TreeSet<>();
+      values = new TreeSet<String>();
+      keys = new TreeSet<String>();
       values.add(key);
       String[] valDiv = lineMap.get(key).split(",");
       String[] keyDiv = key.split(",");
       for (int i = 0; i < valDiv.length; i++) {
         values.add(valDiv[i]);
       }
-      for (int i = 0; i < keyDiv.length; i++) {
-        keys.add(keyDiv[i]);
-      }
-
+      keys.add(lineMap.keySet().toArray()[x].toString());
       lineMapToSet.put(keys, values);
+      x += 1;
     }
     System.out.println(lineMapToSet);
   }

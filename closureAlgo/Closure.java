@@ -15,6 +15,6 @@ public class Closure {
       }
     }
     ClosureCalc solver = new ClosureCalc();
-    solver.calculations(Collections.unmodifiableList(lines));
+    solver.mapper(Collections.unmodifiableList(lines));
   }
 }
