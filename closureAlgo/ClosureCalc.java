@@ -87,17 +87,32 @@ public class ClosureCalc {
         Set<String> value = new TreeSet<String>();
         key.addAll(k);
         value.addAll(lineMapToSet.get(k));
-        if (isSubset(all, value)) {
-          container.addAll(value);
+        if (permutations.size() > 0) {
+          for (Set<String> p : permutations.keySet()) {
+            if (p != null) {
+              key.addAll(p);
+              value.addAll(permutations.get(p));
+            }
+          }
+        }
+        if (isSubset(all, value) && value != null) {
+          String p = key.toString();
+          System.out.println(p);
+          // ToDO : add to a global variable
         }
         permutations.put(key, value);
+        //  System.out.println(permutations);
         permutes(permutations, --size);
-        permutations.remove(key);
+        if (size == lineMapToSet.size()) permutations.remove(key);
       }
     }
   }
 
   private <T> boolean isSubset(Set<String> setA, Set<String> setB) {
     return setB.containsAll(setA);
+  }
+
+  public void printer() {
+    System.out.println(container);
   }
 }

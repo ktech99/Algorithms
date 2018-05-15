@@ -18,5 +18,6 @@ public class Closure {
     solver.mapper(Collections.unmodifiableList(lines));
     while (solver.completer() == 1) ;
     solver.permutes();
+    solver.printer();
   }
 }
