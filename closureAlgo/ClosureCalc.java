@@ -44,7 +44,7 @@ public class ClosureCalc {
       all.addAll(values);
       x += 1;
     }
-    System.out.println(all);
+    //  System.out.println(all);
   }
 
   public int completer() {
@@ -70,39 +70,31 @@ public class ClosureCalc {
         }
       }
     }
-    System.out.println(lineMapToSet);
+    // System.out.println(lineMapToSet);
     return ret;
   }
 
   public void permutes() {
     int size = lineMapToSet.size();
-    Map<Set<String>, Set<String>> permutations = new TreeMap<>();
-
-    System.out.println(permutes(permutations, size));
+    Map<Set<String>, Set<String>> permutations = new HashMap<>();
+    permutes(permutations, size);
   }
 
-  private Set<String> permutes(Map<Set<String>, Set<String>> permutations, int size) {
-    if (size == -1) {
-      return null;
-    }
-    Set<String> v = new TreeSet<String>();
-    Set<String> altk = new TreeSet<String>();
-    for (Set<String> k : permutations.keySet()) {
-      if (isSubset(permutations.get(k), all)) {
-        return k;
-      } else {
-        v = permutations.get(k);
-        altk.addAll(k);
+  private void permutes(Map<Set<String>, Set<String>> permutations, int size) {
+    if (size > 0) {
+      for (Set<String> k : lineMapToSet.keySet()) {
+        Set<String> key = new TreeSet<String>();
+        Set<String> value = new TreeSet<String>();
+        key.addAll(k);
+        value.addAll(lineMapToSet.get(k));
+        if (isSubset(all, value)) {
+          container.addAll(value);
+        }
+        permutations.put(key, value);
+        permutes(permutations, --size);
+        permutations.remove(key);
       }
     }
-    for (Set<String> k : lineMapToSet.keySet()) {
-      altk.addAll(k);
-      v.addAll(lineMapToSet.get(k));
-      Map<Set<String>, Set<String>> newPerm = new HashMap<>();
-      newPerm.put(altk, v);
-      return permutes(newPerm, --size);
-    }
-    return v;
   }
 
   private <T> boolean isSubset(Set<String> setA, Set<String> setB) {
