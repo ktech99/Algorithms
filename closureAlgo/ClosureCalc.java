@@ -13,6 +13,7 @@ public class ClosureCalc {
     lineMap = new HashMap<String, String>();
     lineMapToSet = new HashMap<Set<String>, Set<String>>();
     all = new TreeSet<String>();
+    container = new TreeSet<String>();
   }
 
   public void mapper(List<String> lines) {
@@ -44,7 +45,6 @@ public class ClosureCalc {
       all.addAll(values);
       x += 1;
     }
-    //  System.out.println(all);
   }
 
   public int completer() {
@@ -70,7 +70,6 @@ public class ClosureCalc {
         }
       }
     }
-    // System.out.println(lineMapToSet);
     return ret;
   }
 
@@ -97,11 +96,10 @@ public class ClosureCalc {
         }
         if (isSubset(all, value) && value != null) {
           String p = key.toString();
-          System.out.println(p);
-          // ToDO : add to a global variable
+          container.add(p);
+          System.out.println(container);
         }
         permutations.put(key, value);
-        //  System.out.println(permutations);
         permutes(permutations, --size);
         if (size == lineMapToSet.size()) permutations.remove(key);
       }
@@ -113,6 +111,7 @@ public class ClosureCalc {
   }
 
   public void printer() {
+    // ToDo why isn't container printing
     System.out.println(container);
   }
 }
