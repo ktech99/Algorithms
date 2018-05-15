@@ -17,5 +17,6 @@ public class Closure {
     ClosureCalc solver = new ClosureCalc();
     solver.mapper(Collections.unmodifiableList(lines));
     while (solver.completer() == 1) ;
+    solver.permutes();
   }
 }

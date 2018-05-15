@@ -6,10 +6,13 @@ public class ClosureCalc {
   private Map<Set<String>, Set<String>> lineMapToSet;
   private Set<String> values;
   private Set<String> keys;
+  private Set<String> all;
+  private Set<String> container;
 
   public ClosureCalc() {
     lineMap = new HashMap<String, String>();
     lineMapToSet = new HashMap<Set<String>, Set<String>>();
+    all = new TreeSet<String>();
   }
 
   public void mapper(List<String> lines) {
@@ -38,8 +41,10 @@ public class ClosureCalc {
         values.add(keyDiv[i]);
       }
       lineMapToSet.put(keys, values);
+      all.addAll(values);
       x += 1;
     }
+    System.out.println(all);
   }
 
   public int completer() {
@@ -69,7 +74,38 @@ public class ClosureCalc {
     return ret;
   }
 
-  public <T> boolean isSubset(Set<String> setA, Set<String> setB) {
+  public void permutes() {
+    int size = lineMapToSet.size();
+    Map<Set<String>, Set<String>> permutations = new TreeMap<>();
+
+    System.out.println(permutes(permutations, size));
+  }
+
+  private Set<String> permutes(Map<Set<String>, Set<String>> permutations, int size) {
+    if (size == -1) {
+      return null;
+    }
+    Set<String> v = new TreeSet<String>();
+    Set<String> altk = new TreeSet<String>();
+    for (Set<String> k : permutations.keySet()) {
+      if (isSubset(permutations.get(k), all)) {
+        return k;
+      } else {
+        v = permutations.get(k);
+        altk.addAll(k);
+      }
+    }
+    for (Set<String> k : lineMapToSet.keySet()) {
+      altk.addAll(k);
+      v.addAll(lineMapToSet.get(k));
+      Map<Set<String>, Set<String>> newPerm = new HashMap<>();
+      newPerm.put(altk, v);
+      return permutes(newPerm, --size);
+    }
+    return v;
+  }
+
+  private <T> boolean isSubset(Set<String> setA, Set<String> setB) {
     return setB.containsAll(setA);
   }
 }
