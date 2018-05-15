@@ -2,12 +2,12 @@ import java.util.*;
 
 public class ClosureCalc {
 
-  private Map<String, String> lineMap;
-  private Map<Set<String>, Set<String>> lineMapToSet;
+  private Map<String, String> lineMap; // mapping of the lines
+  private Map<Set<String>, Set<String>> lineMapToSet; // makes strings into sets by splitting
   private Set<String> values;
   private Set<String> keys;
-  private Set<String> all;
-  private Set<String> container;
+  private Set<String> all; // constitutes of all values
+  private Set<String> container; // all keys for given text file
 
   public ClosureCalc() {
     lineMap = new HashMap<String, String>();
@@ -16,6 +16,8 @@ public class ClosureCalc {
     container = new TreeSet<String>();
   }
 
+  // Converts text file to a map
+  // Takes the list of lines as parameter
   public void mapper(List<String> lines) {
     if (lines.size() == 0) {
       throw new IllegalArgumentException("Empty file");
@@ -47,6 +49,7 @@ public class ClosureCalc {
     }
   }
 
+  // completes the map by adding values which correspond to keys
   public int completer() {
     int ret = 0;
     for (Set<String> k : lineMapToSet.keySet()) {
@@ -73,12 +76,15 @@ public class ClosureCalc {
     return ret;
   }
 
+  // permutes all permutations for different lines to find super keys
   public void permutes() {
     int size = lineMapToSet.size();
     Map<Set<String>, Set<String>> permutations = new HashMap<>();
     permutes(permutations, size);
   }
 
+  // helper method for permutes
+  // calculates all permutations using recursion
   private void permutes(Map<Set<String>, Set<String>> permutations, int size) {
     if (size > 0) {
       for (Set<String> k : lineMapToSet.keySet()) {
@@ -96,22 +102,24 @@ public class ClosureCalc {
         }
         if (isSubset(all, value) && value != null) {
           String p = key.toString();
-          container.add(p);
-          System.out.println(container);
+          cointainer = container.add(p);
         }
         permutations.put(key, value);
         permutes(permutations, --size);
-        if (size == lineMapToSet.size()) permutations.remove(key);
+        if (size == lineMapToSet.size()) {
+          permutations.remove(key);
+        }
       }
     }
   }
 
+  // Returns if Set A is a subset of Set B
+  // Takes Set A and Set B as parameters
   private <T> boolean isSubset(Set<String> setA, Set<String> setB) {
     return setB.containsAll(setA);
   }
 
   public void printer() {
-    // ToDo why isn't container printing
     System.out.println(container);
   }
 }
