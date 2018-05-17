@@ -1,3 +1,4 @@
 a-b
-b-c
-c-a
+c-d
+a,d-c
+b,c-a

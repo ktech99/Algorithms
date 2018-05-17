@@ -102,7 +102,8 @@ public class ClosureCalc {
         }
         if (isSubset(all, value) && value != null) {
           String p = key.toString();
-          cointainer = container.add(p);
+          container.add(p);
+          System.out.println(container);
         }
         permutations.put(key, value);
         permutes(permutations, --size);
